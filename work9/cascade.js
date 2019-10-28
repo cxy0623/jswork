@@ -1,5 +1,5 @@
-var collegesArr = ['电子与通信学院', '先进制造学院', '电气技术学院', '汽车学院', '计算机与设计学院', '外语商务学院', '经济贸易学院', '物流学院', '马克思主义学院'];
-var majorsArr = [
+var collegeSelectArr = ['电子与通信学院', '先进制造学院', '电气技术学院', '汽车学院', '计算机与设计学院', '外语商务学院', '经济贸易学院', '物流学院', '马克思主义学院'];
+var majorSelectArr = [
     ['电子', '电信', '通信', '嵌入', '物联'],
     ['数控', '模具', '机设', '机自'],
     ['机电', '电气', '建电', '建智', '空调', '光电', '机器人'],
@@ -10,7 +10,7 @@ var majorsArr = [
     ['物流', '物技', '工企', '营销', '报关', '连锁'],
     ['社工']
 ];
-var classesArr = [
+var classSelectArr = [
     [
         ["电子1801", "电子1802"],
         ["电信1803", "电信1804"],
@@ -79,26 +79,26 @@ function createOption (obj,data){
         obj.options.add(op);
     }
 }
-var province = document.getElementById('province');
-createOption(province,collegesArr);
+var collegeSelect = document.getElementById('collegeSelect');
+createOption(collegeSelect,collegeSelectArr);
 
 var majorSelect=document.getElementById('majorSelect');
-province.onchange = function(){
+collegeSelect.onchange = function(){
     majorSelect.options.length = 0;
-    createOption(majorSelect,majorSelectArr[province.value]);
+    createOption(majorSelect,majorSelectArr[collegeSelect.value]);
 };
 
 var classSelect = document.getElementById('classSelect');
 majorSelect.onchange = function(){
     classSelect.options.length = 0;
-    createOption(classSelect,classSelectArr[province.value][majorSelect.value]);
+    createOption(classSelect,classSelectArr[collegeSelect.value][majorSelect.value]);
     
 };
 
-province.onchange = function(){
+collegeSelect.onchange = function(){
     majorSelect.options.length = 0;
-    createOption(majorSelect,majorSelectArr[province.value]);
-    if (province.value >=0){
+    createOption(majorSelect,majorSelectArr[collegeSelect.value]);
+    if (collegeSelect.value >=0){
         majorSelect.onchange();
 
     }else {
